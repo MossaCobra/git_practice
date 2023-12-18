@@ -10,17 +10,27 @@ function generateRandomNumber(num) {
   
   let personalWisdom = [];
 
-  for(let prop in collectiveWisdom){
-    let optionIdx = generateRandomNumber(collectiveWisdom[prop].length);
-
-    switch(prop){
-        case 'signInfo':
-            personalWisdom.push(generateSignInfo(collectiveWisdom[prop]));
-            break;
-        case 'fortuneOutput':
-            personalWisdom.push(generateFortuneOutput(collectiveWisdom[prop]));
-            break;
-        case 'advice':
-            personalWisdom.push(generateRandomNumber(collectiveWisdom[prop])); 
+  for(let prop in collectiveWisdom) {
+    let optionIdx = generateRandomNumber(collectiveWisdom[prop].length)
+  
+    switch(prop) {
+      case 'signInfo':
+        personalWisdom.push(`Your sign right now is a "${collectiveWisdom[prop][optionIdx]}".`)
+        break
+      case 'fortuneOutput':
+        personalWisdom.push(`You are having: "${collectiveWisdom[prop][optionIdx]}".`)
+        break
+      case 'advice':
+        personalWisdom.push(`You should: "${collectiveWisdom[prop][optionIdx]}".`)
+        break
+      default:
+        personalWisdom.push('There is not enough info.')
     }
   }
+
+  function formatWisdom(wisdom) {
+    const formatted = personalWisdom.join('\n')
+    console.log(formatted)
+  }
+  
+  formatWisdom(personalWisdom);
